@@ -455,6 +455,10 @@ struct CompositorApp: App {
     }
 }
 
+// 关闭 CompositorApp
+}
+
+// Monterey compatibility extension 必须位于文件顶层
 extension NSApplication {
     /// Whether the keyboard is in a text field, so Cut, Copy, Paste, Undo and the fill shortcuts act on its text rather
     /// than the canvas. A Save or Open panel counts: the sandbox runs it in another process, so its file name field
