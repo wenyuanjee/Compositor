@@ -18,14 +18,24 @@ struct ToolHeaderPill<Content: View>: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            Group(subviews: content) { segments in
-                ForEach(segments.indices, id: \.self) { index in
-                    if index > 0 { Rectangle().fill(.white.opacity(0.12)).frame(width: 1, height: 12) }
-                    segments[index]
+            if #available(macOS 15.0, *) {
+                Group(subviews: content) { segments in
+                    ForEach(segments.indices, id: \.self) { index in
+                        if index > 0 {
+                            Rectangle()
+                                .fill(.white.opacity(0.12))
+                                .frame(width: 1, height: 12)
+                        }
+                        segments[index]
+                    }
                 }
+            } else {
+                content
             }
         }
-        .buttonStyle(ToolHeaderPillButtonStyle(width: segmentWidth))
+        .buttonStyle(
+            ToolHeaderPillButtonStyle(width: segmentWidth)
+        )
         .background(.white.opacity(0.09))
         .clipShape(Capsule())
     }
