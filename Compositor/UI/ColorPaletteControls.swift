@@ -65,17 +65,17 @@ struct ColorPaletteControls: View {
                 }
                 .buttonStyle(.plain)
                 .foregroundStyle(.secondary)
-                .help("Swap foreground and background (X)")
+                .help("Swap foreground and background (X)".localized)
                 .accessibilityLabel("Swap colors")
             }
         }
         .disabled(!session.canEditPalette)
         .popover(isPresented: Binding(get: { choosingMaskBackground != nil }, set: { if !$0 { choosingMaskBackground = nil } })) {
             VStack(alignment: .leading, spacing: 12) {
-                Text(choosingMaskBackground == true ? "Mask background" : "Mask foreground").font(.headline)
+                Text(choosingMaskBackground == true ? "Mask background".localized : "Mask foreground".localized).font(.headline)
                 HStack {
-                    Button("Black · Hide") { chooseMask(.black) }
-                    Button("White · Reveal") { chooseMask(.white) }
+                    Button("Black · Hide".localized) { chooseMask(.black) }
+                    Button("White · Reveal".localized) { chooseMask(.white) }
                 }
             }.padding(16)
         }
@@ -89,7 +89,7 @@ struct ColorPaletteControls: View {
         }
     }
     private func swatch(background: Bool) -> some View {
-        let label = background ? "Background color" : "Foreground color"
+        let label = (background ? "Background color" : "Foreground color").localized
         return Button {
             if session.isMaskSelected { choosingMaskBackground = background }
             else { session.openColorPicker(background: background) }

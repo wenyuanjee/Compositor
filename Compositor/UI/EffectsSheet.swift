@@ -17,10 +17,10 @@ struct EffectsSheet: View {
             }
             Divider()
             HStack {
-                Button("Cancel") { session.finishEffectsEditing(commit: false) }
+                Button("Cancel".localized) { session.finishEffectsEditing(commit: false) }
                     .configuredNativeShortcut(.escape)
                 Spacer()
-                Button("OK") { session.finishEffectsEditing(commit: true) }
+                Button("OK".localized) { session.finishEffectsEditing(commit: true) }
                     .configuredNativeShortcut(.return).buttonStyle(.borderedProminent)
             }
         }
@@ -37,15 +37,15 @@ struct EffectsSheet: View {
             if effect != nil { swatch(.stroke) }
         }
         if let effect {
-            slider("Size", value: Binding(get: { effect.size }, set: { size in
+            slider("Size".localized, value: Binding(get: { effect.size }, set: { size in
                 session.changeEffects { $0.stroke?.size = size }
             }), range: 0...20, inputRange: 0...StrokeEffect.maxSize, unit: "px")
-            slider("Opacity", value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
+            slider("Opacity".localized, value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
                 session.changeEffects { $0.stroke?.opacity = Double(value) / 100 }
             }), range: 0...100, unit: "%")
             HStack(spacing: 10) {
                 Text("Position").frame(width: 64, alignment: .leading)
-                Picker("Position", selection: Binding(get: { effect.inside }, set: { inside in
+                Picker("Position".localized, selection: Binding(get: { effect.inside }, set: { inside in
                     session.changeEffects { $0.stroke?.inside = inside }
                 })) {
                     Text("Outside").tag(false)
@@ -64,16 +64,16 @@ struct EffectsSheet: View {
             if effect != nil { swatch(.shadow) }
         }
         if let effect {
-            slider("Opacity", value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
+            slider("Opacity".localized, value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
                 session.changeEffects { $0.shadow?.opacity = Double(value) / 100 }
             }), range: 0...100, unit: "%")
-            slider("Angle", value: Binding(get: { effect.angle }, set: { angle in
+            slider("Angle".localized, value: Binding(get: { effect.angle }, set: { angle in
                 session.changeEffects { $0.shadow?.angle = angle }
             }), range: -180...180, unit: "°")
-            slider("Distance", value: Binding(get: { effect.distance }, set: { distance in
+            slider("Distance".localized, value: Binding(get: { effect.distance }, set: { distance in
                 session.changeEffects { $0.shadow?.distance = distance }
             }), range: 0...100, inputRange: 0...5000, unit: "px")
-            slider("Blur", value: Binding(get: { effect.blur }, set: { blur in
+            slider("Blur".localized, value: Binding(get: { effect.blur }, set: { blur in
                 session.changeEffects { $0.shadow?.blur = blur }
             }), range: 0...100, inputRange: 0...500, unit: "px")
         }
@@ -87,7 +87,7 @@ struct EffectsSheet: View {
             if effect != nil { swatch(.colorOverlay) }
         }
         if let effect {
-            slider("Opacity", value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
+            slider("Opacity".localized, value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
                 session.changeEffects { $0.colorOverlay?.opacity = Double(value) / 100 }
             }), range: 0...100, unit: "%")
         }
@@ -101,16 +101,16 @@ struct EffectsSheet: View {
             if effect != nil { swatch(.innerShadow) }
         }
         if let effect {
-            slider("Opacity", value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
+            slider("Opacity".localized, value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
                 session.changeEffects { $0.innerShadow?.opacity = Double(value) / 100 }
             }), range: 0...100, unit: "%")
-            slider("Angle", value: Binding(get: { effect.angle }, set: { angle in
+            slider("Angle".localized, value: Binding(get: { effect.angle }, set: { angle in
                 session.changeEffects { $0.innerShadow?.angle = angle }
             }), range: -180...180, unit: "°")
-            slider("Distance", value: Binding(get: { effect.distance }, set: { distance in
+            slider("Distance".localized, value: Binding(get: { effect.distance }, set: { distance in
                 session.changeEffects { $0.innerShadow?.distance = distance }
             }), range: 0...50, inputRange: 0...5000, unit: "px")
-            slider("Blur", value: Binding(get: { effect.blur }, set: { blur in
+            slider("Blur".localized, value: Binding(get: { effect.blur }, set: { blur in
                 session.changeEffects { $0.innerShadow?.blur = blur }
             }), range: 0...100, inputRange: 0...500, unit: "px")
         }
@@ -124,10 +124,10 @@ struct EffectsSheet: View {
             if effect != nil { swatch(.outerGlow) }
         }
         if let effect {
-            slider("Size", value: Binding(get: { effect.size }, set: { size in
+            slider("Size".localized, value: Binding(get: { effect.size }, set: { size in
                 session.changeEffects { $0.outerGlow?.size = size }
             }), range: 0...100, inputRange: 0...500, unit: "px")
-            slider("Opacity", value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
+            slider("Opacity".localized, value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
                 session.changeEffects { $0.outerGlow?.opacity = Double(value) / 100 }
             }), range: 0...100, unit: "%")
         }
@@ -141,10 +141,10 @@ struct EffectsSheet: View {
             if effect != nil { swatch(.innerGlow) }
         }
         if let effect {
-            slider("Size", value: Binding(get: { effect.size }, set: { size in
+            slider("Size".localized, value: Binding(get: { effect.size }, set: { size in
                 session.changeEffects { $0.innerGlow?.size = size }
             }), range: 0...100, inputRange: 0...500, unit: "px")
-            slider("Opacity", value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
+            slider("Opacity".localized, value: Binding(get: { CGFloat(effect.opacity * 100) }, set: { value in
                 session.changeEffects { $0.innerGlow?.opacity = Double(value) / 100 }
             }), range: 0...100, unit: "%")
         }
@@ -157,8 +157,8 @@ struct EffectsSheet: View {
             ColorSwatch(color: Color(red: Double(color?.red ?? 0), green: Double(color?.green ?? 0), blue: Double(color?.blue ?? 0)))
         }
         .buttonStyle(.plain)
-        .help(kind.rawValue + " color")
-        .accessibilityLabel(kind.rawValue + " color")
+        .help(String.localizedStringWithFormat(NSLocalizedString("%@ color", comment: ""), kind.rawValue.localized))
+        .accessibilityLabel(String.localizedStringWithFormat(NSLocalizedString("%@ color", comment: ""), kind.rawValue.localized))
     }
 
     private func slider(_ title: String, value: Binding<CGFloat>, range: ClosedRange<CGFloat>,

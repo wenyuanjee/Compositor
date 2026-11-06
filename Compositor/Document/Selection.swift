@@ -209,6 +209,9 @@ nonisolated struct SelectionClip: @unchecked Sendable {
 nonisolated enum WandMode: String, CaseIterable, Sendable {
     case wand = "Wand"
     case object = "Object"
+
+    /// The localized name.
+    var localizedName: String { rawValue.localized }
 }
 
 nonisolated enum LassoKind: String, CaseIterable, Sendable {
@@ -219,12 +222,18 @@ nonisolated enum LassoKind: String, CaseIterable, Sendable {
     case ellipse = "Ellipse"
     static let lassoChoices: [LassoKind] = [.freehand, .polygonal]
     static let marqueeChoices: [LassoKind] = [.rectangle, .ellipse]
+
+    /// The localized name.
+    var localizedName: String { rawValue.localized }
 }
 
 nonisolated enum SelectionMode: String, CaseIterable, Sendable {
     case replace = "New"
     case add = "Add"
     case subtract = "Subtract"
+
+    /// The localized name.
+    var localizedName: String { rawValue.localized }
 }
 
 /// The box a drag from `anchor` to `point` spans, in whole pixels. `square` evens the sides;

@@ -36,7 +36,7 @@ struct TypeControls: View {
                         case .keep: session.keepFontPreview()
                         }
                     })
-                        .frame(width: 210).help("Font face, including bold and italic variants")
+                        .frame(width: 210).help("Font face, including bold and italic variants".localized)
                     HStack(spacing: 6) {
                         Text("Size").scrubbable(sensitivity: 1, value: value(\.fontSize), range: 1...2000, step: 1)
                         TextField("Size", value: number(\.fontSize), format: .number).frame(width: 52)
@@ -49,7 +49,7 @@ struct TypeControls: View {
                             let color = session.typeColor
                             ColorSwatch(color: Color(red: color.red, green: color.green, blue: color.blue))
                         }
-                        .buttonStyle(.plain).help("Text color").accessibilityLabel("Text color")
+                        .buttonStyle(.plain).help("Text color".localized).accessibilityLabel("Text color")
                     }
                     Divider().frame(height: 18)
                     HStack(spacing: 2) {
@@ -66,7 +66,7 @@ struct TypeControls: View {
                                     .contentShape(RoundedRectangle(cornerRadius: 4))
                             }
                             .buttonStyle(.plain)
-                            .help("Align " + alignment.rawValue.lowercased())
+                            .help("Align ".localized + alignment.rawValue.lowercased())
                             .accessibilityLabel("Align " + alignment.rawValue.lowercased())
                             .accessibilityAddTraits(selected ? .isSelected : [])
                         }
@@ -87,14 +87,14 @@ struct TypeControls: View {
                         .frame(width: 52)
                         .arrowSteps(value: { Double(session.currentTextStyle.lineHeight) },
                                     change: { stepped in session.changeTextStyle { $0.leading = CGFloat(max(0, stepped)) } })
-                        .help("Line height, baseline to baseline. Empty or 0 is Auto: 120% of the font size.")
+                        .help("Line height, baseline to baseline. Empty or 0 is Auto: 120% of the font size.".localized)
                 }
             }.scrollIndicators(.never)
             if session.textDraft != nil {
-                Button("Cancel") { session.cancelText() }
-                Button("Done") { _ = session.finishText() }
+                Button("Cancel".localized) { session.cancelText() }
+                Button("Done".localized) { _ = session.finishText() }
             } else {
-                Button("Edit Text") { session.editActiveText() }.disabled(session.activeLayer?.liveText == nil)
+                Button("Edit Text".localized) { session.editActiveText() }.disabled(session.activeLayer?.liveText == nil)
             }
         }
         .textFieldStyle(.roundedBorder).padding(.horizontal, 18).toolHeaderBar()
