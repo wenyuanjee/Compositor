@@ -31,7 +31,7 @@ private struct DefaultColorsIcon: View {
 }
 
 struct ColorPaletteControls: View {
-    let session: EditorSession
+    @ObservedObject var session: EditorSession
     @State private var choosingMaskBackground: Bool?
     private var pickerPanel: ColorPickerPanelController { .shared }
     private let swatchSize = CGSize(width: 24, height: 24)
